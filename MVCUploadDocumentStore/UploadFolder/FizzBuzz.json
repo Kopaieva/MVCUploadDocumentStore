@@ -1,0 +1,6 @@
+[
+   {"Value": 3, "Output": "Fizz"},
+   {"Value": 5, "Output": "Buzz"},
+   {"Value": 7, "Output": "Blubb"},
+   {"Value": 4, "Output": "Plum"}
+]

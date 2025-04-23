@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DocStore>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form asp-action="UploadFile" asp-controller="Home" method="post" enctype="multipart/form-data">
+    <input type="file" name="dieDatei" />
+    <br />
+    <input type="submit" value="Hochladen" />
+</form>
+
+<form asp-action="DownloadMultiple" asp-controller="Home" method="post">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Auswahl</th>
+                <th>Name</th>
+                <th>Datum</th>
+                <th>Typ</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var datei in Model)
+            {
+                <tr>
+                    <td><input type="checkbox" name="ids" value="@datei.DocId" /></td>
+                    <td>@datei.DocName</td>
+                  
+                    <td>@datei.InsertionDate</td>
+                    <td>@datei.ContentType</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="buttons">
+        <input type="submit" value="Ausgewählte Dateien herunterladen" formaction="@Url.Action("DownloadMultiple", "Home")" />
+        <input type="submit" value="Ausgewählte Dateien löschen" formaction="@Url.Action("DeleteMultiple", "Home")" onclick="return confirm('Sind Sie sicher, dass Sie die ausgewählten Dateien löschen möchten?');" />
+    </div>
+</form>
